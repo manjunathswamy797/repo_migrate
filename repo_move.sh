@@ -6,7 +6,7 @@ set -e
 # Simple script that keeps workflows but uses skip-ci to prevent running
 
 # Configuration (edit these values)
-MONOLITH_REPO="https://github.com/EliLillyCo/lusa-aiassistant-datascience.git"  # Change this
+MONOLITH_REPO="github.com/EliLillyCo/lusa-aiassistant-datascience.git"  # Change this
 TEMP_DIR="./migration_temp"
 CONFIG_FILE="migration_config.json"
 
@@ -40,7 +40,7 @@ cat "$CONFIG_FILE" | jq -c '.projects[]' | while read -r project; do
         cd "$BRANCH_DIR"
         
         # Clone monolith and checkout specific branch
-        git clone -b "$branch" --single-branch "$MONOLITH_REPO" source
+        git clone -b "$branch" --single-branch "https://$GITHUB_TOKEN@$MONOLITH_REPO" source
         cd source || { echo "❌ cd failed, stopping."; exit 1; }
         
         # Create paths file for git-filter-repo
@@ -78,7 +78,7 @@ cat "$CONFIG_FILE" | jq -c '.projects[]' | while read -r project; do
         fi
         
         # Force push to target repo with skip ci flag
-        git remote add target "$NEW_REPO"
+        git remote add target "https://$GITHUB_TOKEN@$NEW_REPO"
         echo "  Force pushing branch $branch to target repository..."
         git push -f target HEAD:$branch -o ci.skip
         
