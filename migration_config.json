@@ -1,13 +1,13 @@
 {
         "projects": [
           {
-            "name": "TM_Unstructured",
-            "folder": "TM_Unstructured",
-            "new_repo": "https://github.com/EliLillyCo/lusa-aiassistant-datascience-tm-unstructured",
-            "branches": ["qa","test","stage","main"],
+            "name": "TM_Optimus",
+            "folder": "TM_Optimus",
+            "new_repo": "github.com/EliLillyCo/lusa-aiassistant-datascience-tm-optimus",
+            "branches": ["qa","stage","prod"],
             "workflows": [
               {
-                "source_repo_path": ".github/workflows/TM_unstructured-bundle-cd.yml"
+                "source_repo_path": ".github/workflows/TM_optimus-bundle-cd.yml"
               }
             ]
           }
